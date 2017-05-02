@@ -33,8 +33,8 @@ KVM:
 ![Image of Volume Approach](kvmchangeconf.png)
 ---
 ### Configurazione di una vNSF (2)
-+Docker:
-+Ogni container parte da una immagine _STATICA_ 
+Docker:
+Ogni container parte da una immagine _STATICA_ 
  - -> Come incorporare un file di configurazione in una vNSF su Docker?
  
 Due soluzioni:
