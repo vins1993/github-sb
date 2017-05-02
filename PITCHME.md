@@ -30,7 +30,7 @@ KVM:
 - Crea un file di configurazione readable dal Software
 - Rilancia il processo della vNSF (la macchina virtuale non è riavviata)
 
-![Image of Volume Approach](https://github.com/vins1993/github-sb/blob/master/assets/kvmchangeconf.png)
+![Image of Volume Approach](kvmchangeconf.png)
 ---
 ### Configurazione di una vNSF (2)
 Docker:
@@ -52,7 +52,7 @@ COPY vNSF.cfg /usr/local/etc/conf/vNSF.cfg`
 `docker run localDockerImage`
 ---
 ### Volumi Docker
- ![Image of 1st Approach](https://github.com/vins1993/github-sb/blob/master/assets/volume.png)
+ ![Image of 1st Approach](volume.png)
 
 <!-- run -->
 `docker run -v /etc/apache2/conf/:/usr/local/etc/apache2/conf trustedDockerImage:latest`
@@ -65,7 +65,7 @@ COPY vNSF.cfg /usr/local/etc/conf/vNSF.cfg`
   - Rilancio di un nuovo container
 ---
 ### Cambio Configurazione in Docker (2)
- ![Image of 2nd Approach](https://github.com/vins1993/github-sb/blob/master/assets/dockerchangeconf.png)
+ ![Image of 2nd Approach](dockerchangeconf.png)
  
 - E' necessario implementare una funzione che traduca una eventuale rappresentazione character-oriented in un file di configurazione specifico per la vNSF che si vuole utilizzare
 
