@@ -42,12 +42,10 @@ Due soluzioni:
  - Volume Docker
 ---
 ### Dockerfile con configurazione vNSF
-`FROM trustedDockerImage:latest
-COPY vNSF.cfg /usr/local/etc/conf/vNSF.cfg`
-
+`FROM trustedDockerImage:latest`
+`COPY vNSF.cfg /usr/local/etc/conf/vNSF.cfg`
 <!-- build -->
 `docker build -t localDockerImage .`
-
 <!-- run -->
 `docker run localDockerImage`
 ---
