@@ -25,10 +25,10 @@ Virtualizzazione dell'intero sistema operativo.
 
 ### Configurazione di una vNSF 
 KVM:
-- Espone un'interfaccia REST
-- Riceve configurazione in formato character-oriented (es JSON)
-- Crea un file di configurazione readable dal Software
-- Rilancia il processo della vNSF (la macchina virtuale non è riavviata)
+ - Espone un'interfaccia REST
+ - Riceve configurazione in formato character-oriented (es JSON)
+ - Crea un file di configurazione readable dal Software
+ - Rilancia il processo della vNSF (la macchina virtuale non è riavviata)
 
 ![Image of Volume Approach](kvmchangeconf.png)
 ---
@@ -43,11 +43,14 @@ Due soluzioni:
 ---
 ### Dockerfile con configurazione vNSF
 `FROM trustedDockerImage:latest`
+
 `COPY vNSF.cfg /usr/local/etc/conf/vNSF.cfg`
+
 <!-- build -->
 `docker build -t localDockerImage .`
 <!-- run -->
 `docker run localDockerImage`
+
 ---
 ### Volumi Docker
  ![Image of 1st Approach](volume.png)
@@ -56,6 +59,7 @@ Supponendo che il file di configurazione sia localmente disponibile:
 
 <!-- run -->
 `docker run -v /etc/apache2/conf/:/usr/local/etc/apache2/conf trustedDockerImage:latest`
+
 ---
 ### Cambio di configurazione in Docker
 - Nell'ambiente Docker non è possibile rilanciare un processo all'interno dello stesso container
@@ -63,6 +67,7 @@ Supponendo che il file di configurazione sia localmente disponibile:
   - Spegnimento del container attuale
   - Copia della configurazione con Dockerfile (o con mapping Volume)
   - Rilancio di un nuovo container
+  
 ---
 ### Cambio Configurazione in Docker (2)
  ![Image of 2nd Approach](dockerchangeconf.png)
