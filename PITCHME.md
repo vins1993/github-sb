@@ -35,7 +35,7 @@ KVM:
 ### Configurazione di una vNSF (2)
 Docker:
 Ogni container parte da una immagine _STATICA_ 
- - -> Come incorporare un file di configurazione in una vNSF su Docker?
+ - Come incorporare un file di configurazione in una vNSF su Docker?
  
 Due soluzioni:
  - File di Configurazione incapsulato nell'immagine (Dockerfile) 
@@ -55,6 +55,7 @@ COPY vNSF.cfg /usr/local/etc/conf/vNSF.cfg`
  ![Image of 1st Approach](volume.png)
  
 Supponendo che il file di configurazione sia localmente disponibile: 
+
 <!-- run -->
 `docker run -v /etc/apache2/conf/:/usr/local/etc/apache2/conf trustedDockerImage:latest`
 ---
