@@ -13,6 +13,7 @@ Virtualizzazione dell'intero sistema operativo.
 - CONTRO 
  - Lento
  - Dipendente da architettura sottostante
+ 
 --- 
 ### Approccio Docker 
 - PRO
@@ -21,35 +22,42 @@ Virtualizzazione dell'intero sistema operativo.
 - CONTRO
  - Minor Isolamento
  - Sicurezza (namespaces, root capabilities e shared kernel)
+ 
 ---
-
-### Configurazione di una vNSF 
-KVM:
+### Configurazione di una vNSF con KVM
  - Espone un'interfaccia REST
  - Riceve configurazione in formato character-oriented (es JSON)
  - Crea un file di configurazione readable dal Software
  - Rilancia il processo della vNSF (la macchina virtuale non è riavviata)
 
-![Image of Volume Approach](kvmchangeconf.png)
 ---
-### Configurazione di una vNSF (2)
-Docker:
+### Configurazione di una vNSF con KVM (2)
+![Image of Volume Approach](kvmchangeconf.png)
+
+---
+### Configurazione di una vNSF con Docker
 Ogni container parte da una immagine _STATICA_ 
  - Come incorporare un file di configurazione in una vNSF su Docker?
  
 Due soluzioni:
  - File di Configurazione incapsulato nell'immagine (Dockerfile) 
  - Volume Docker
+
 ---
 ### Dockerfile con configurazione vNSF
-`FROM trustedDockerImage:latest`
+Dockerfile:
 
-`COPY vNSF.cfg /usr/local/etc/conf/vNSF.cfg`
+<code>FROM trustedDockerImage:latest</code>
 
-<!-- build -->
-`docker build -t localDockerImage .`
-<!-- run -->
-`docker run localDockerImage`
+<code>COPY vNSF.cfg /usr/local/etc/conf/vNSF.cfg</code>
+
+Build:
+
+<code>docker build -t localDockerImage .</code>
+
+Run:
+
+<code>docker run localDockerImage</code>
 
 ---
 ### Volumi Docker
@@ -57,8 +65,8 @@ Due soluzioni:
  
 Supponendo che il file di configurazione sia localmente disponibile: 
 
-<!-- run -->
-`docker run -v /etc/apache2/conf/:/usr/local/etc/apache2/conf trustedDockerImage:latest`
+Run:
+<code>docker run -v /etc/apache2/conf/:/usr/local/etc/apache2/conf trustedDockerImage:latest</code>
 
 ---
 ### Cambio di configurazione in Docker
