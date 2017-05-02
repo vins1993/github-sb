@@ -52,11 +52,9 @@ Dockerfile:
 <code>COPY vNSF.cfg /usr/local/etc/conf/vNSF.cfg</code>
 
 Build:
-
 <code>docker build -t localDockerImage .</code>
 
 Run:
-
 <code>docker run localDockerImage</code>
 
 ---
@@ -80,6 +78,7 @@ Run:
 ### Cambio Configurazione in Docker (2)
  ![Image of 2nd Approach](dockerchangeconf.png)
  
+---
 - E' necessario implementare una funzione che traduca una eventuale rappresentazione character-oriented in un file di configurazione specifico per la vNSF che si vuole utilizzare
 
 --- 
