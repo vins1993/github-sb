@@ -78,11 +78,24 @@ Run:
 ### Cambio Configurazione in Docker (2)
 ![Image of 2nd Approach](dockerchangeconf.png)
  
----
 - E' necessario implementare una funzione che traduca una eventuale rappresentazione character-oriented in un file di configurazione specifico per la vNSF che si vuole utilizzare
 
 --- 
+## Reverse Proxy
+### Apache Traffic Server, Apache mod_proxy, Nginx, HAProxy
+---
+## Architettura
+Multi-thread | Single-thread (Event Based)
+------------ | -------------
+Apache Traffic Server | Nginx
+Apache con mod_proxy | HAProxy
 
-  
+---
+
+## Architettura (2)
+La virtualizzazione mediante Docker potrebbe essere più idonea all'approccio Event Based:
+ - confinamento mediante cgroup limita il numero di thread
+ - prediligere la scalabilità orizzontale, non verticale
+ 
 
 
