@@ -2,10 +2,10 @@
 ## Design Aspects
 
 ---
-# Implementazione vNSF
-## KVM vs Docker
+## Implementazione vNSF
+### KVM vs Docker
 ---
-## Approccio KVM
+### Approccio KVM
 Virtualizzazione dell'intero sistema operativo. 
 - PRO
  - Maggior Isolamento
@@ -14,7 +14,7 @@ Virtualizzazione dell'intero sistema operativo.
  - Lento
  - Dipendente da architettura sottostante
 --- 
-## Approccio Docker 
+### Approccio Docker 
 - PRO
  - Veloce
  - Leggero (facile migrazione di immagini)
@@ -23,24 +23,57 @@ Virtualizzazione dell'intero sistema operativo.
  - Sicurezza (namespaces, root capabilities e shared kernel)
 ---
 
-## Configurazione di una vNSF (es Reverse Proxy)
+### Configurazione di una vNSF 
 KVM:
 - Espone un'interfaccia REST
 - Riceve configurazione in formato character-oriented (es JSON)
-- Crea un file di configurazione readable dal Software Proxy
-- Rilancia il processo della vNSF (NO RIAVVIO MACCHINA VIRTUALE)
+- Crea un file di configurazione readable dal Software
+- Rilancia il processo della vNSF (la macchina virtuale non è riavviata)
+
+![Image of Volume Approach]
+ (assets/kvmchangeconf.png)
 ---
-## Configurazione di una vNSF (es Reverse Proxy) (2)
+### Configurazione di una vNSF (2)
 Docker:
 Ogni container parte da una immagine _STATICA_ 
  - -> Come incorporare un file di configurazione in una vNSF su Docker?
-
+ 
 Due soluzioni:
  - File di Configurazione incapsulato nell'immagine (Dockerfile) 
  - Volume Docker
 ---
-## Dockerfile con file di configurazione
+### Dockerfile con configurazione vNSF
+`FROM trustedDockerImage:latest
+COPY vNSF.cfg /usr/local/etc/conf/vNSF.cfg`
 
- 
+<!-- build -->
+`docker build -t localDockerImage .`
+
+<!-- run -->
+`docker run localDockerImage`
+---
+### Volumi Docker
  ![Image of Volume Approach]
  (assets/volume.png)
+
+<!-- run -->
+`docker run -v /etc/apache2/conf/:/usr/local/etc/apache2/conf trustedDockerImage:latest`
+---
+### Cambio di configurazione in Docker
+- Nell'ambiente Docker non è possibile rilanciare un processo all'interno dello stesso container
+ - Procedura:
+  - Spegnimento del container attuale
+  - Copia della configurazione con Dockerfile (o con mapping Volume)
+  - Rilancio di un nuovo container
+---
+### Cambio Configurazione in Docker (2)
+ ![Image of 2nd Approach]
+ (assets/dockerchangeconf.png)
+ 
+- E' necessario implementare una funzione che traduca una eventuale rappresentazione character-oriented in un file di configurazione specifico per la vNSF che si vuole utilizzare
+
+--- 
+
+  
+
+
