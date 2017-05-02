@@ -53,7 +53,8 @@ COPY vNSF.cfg /usr/local/etc/conf/vNSF.cfg`
 ---
 ### Volumi Docker
  ![Image of 1st Approach](volume.png)
-
+ 
+Supponendo che il file di configurazione sia localmente disponibile: 
 <!-- run -->
 `docker run -v /etc/apache2/conf/:/usr/local/etc/apache2/conf trustedDockerImage:latest`
 ---
