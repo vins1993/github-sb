@@ -49,10 +49,10 @@ Dockerfile:
 
 #####<code>FROM trustedDockerImage:latest</code>
 
-#####<code>COPY vNSF.cfg /usr/local/etc/conf/vNSF.cfg</code>
+######<code>COPY vNSF.cfg /usr/local/etc/conf/vNSF.cfg</code>
 
 Build:
-#####<code>docker build -t localDockerImage .</code>
+######<code>docker build -t localDockerImage .</code>
 
 Run:
 #####<code>docker run localDockerImage</code>
