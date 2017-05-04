@@ -69,7 +69,7 @@ Run:
 ---
 ### Cambio di configurazione in Docker
 - Nell'ambiente Docker non è possibile rilanciare un processo all'interno dello stesso container
-- Procedura:
+Procedura:
  - Spegnimento del container attuale
  - Copia della configurazione con Dockerfile (o con mapping Volume)
  - Rilancio di un nuovo container
