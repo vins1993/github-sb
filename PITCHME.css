@@ -6,4 +6,7 @@
 .reveal .slides {
     text-align: left;
 }
-
+code {
+  font-size: 1px;
+  background-color: #FFFF00;
+}
