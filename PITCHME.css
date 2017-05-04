@@ -1,4 +1,4 @@
-.reveal section img {
+.reveal section pre img {
   border: 0;
   box-shadow: none;
 }
@@ -6,7 +6,7 @@
 .reveal .slides {
     text-align: left;
 }
-code {
+code pre {
   font-size:1.3em;
   background-color: #F3F781;
 }
